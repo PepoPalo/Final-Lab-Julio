@@ -22,9 +22,7 @@ class ArticulosRepo():
     def baja(self,id):
         a = Articulo.query.get(id)
         if a:
-            db.session.delete(a)
             a.enStock = False
-            db.session.commit()
             return True
         return False
 

@@ -1,6 +1,6 @@
 from flask import abort
 from flask_restx import Resource, Namespace, Model, fields, reqparse
-from infraestructura.articulos_repo import ArticulosRepo
+from backend.infraestructura.articulos_repo import ArticulosRepo
 
 from flask_restx.inputs import date
 
@@ -45,7 +45,8 @@ editarArticuloParser.add_argument('codigo',type=int, required=True)
 class ArticuloResource(Resource):
     @nsArticulo.marshal_list_with(modeloArticulo)
     def get(self):
-        return repo.get_all()
+        ## traigo los que tan en stock nomas
+        return repo.get_enStock()
 
     @nsArticulo.expect(modeloArticuloSinID)
     @nsArticulo.marshal_with(modeloArticulo)
@@ -83,6 +84,8 @@ class ArticuloResource(Resource):
 #         if l:
 #             return l, 200
 #         abort(404)
+
+
 @nsArticulo.route('/baja/<int:id>')
 class ArticuloResource(Resource):
     @nsArticulo.expect(modeloArticulo)
