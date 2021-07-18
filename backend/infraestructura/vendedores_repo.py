@@ -1,8 +1,8 @@
-from backend.dominio.vendedor import Vendedor
-from backend.datos import db
+from dominio.vendedor import Vendedor
+from datos import db
 
 
-class VendedorsRepo():
+class VendedoresRepo():
     def get_all(self):
         return Vendedor.query.all()
     

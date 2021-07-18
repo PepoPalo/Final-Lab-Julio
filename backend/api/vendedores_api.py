@@ -1,6 +1,6 @@
 from flask import abort
 from flask_restx import Resource, Namespace, Model, fields, reqparse
-from backend.infraestructura.vendedores_repo import VendedoresRepo
+from infraestructura.vendedores_repo import VendedoresRepo
 
 from flask_restx.inputs import date
 

@@ -1,5 +1,5 @@
-from backend.dominio.articulo import Articulo
-from backend.datos import db
+from dominio.articulo import Articulo
+from datos import db
 
 
 class ArticulosRepo():
