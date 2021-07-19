@@ -7,7 +7,6 @@ from sqlalchemy.sql.schema import ForeignKey
 class FacturaDetalle(db.Model):
     # codigo - descripcion - cantidad vendida - monto total (con iva)
     __tablename__ = 'facturas_detalle'
-    #Relacion con Articulo/Producto?
     codigo = Column(Integer, primary_key=True, autoincrement=True)
     factura_id = Column(Integer, unique=False)
     articulo_cod = Column(String(), nullable=False)

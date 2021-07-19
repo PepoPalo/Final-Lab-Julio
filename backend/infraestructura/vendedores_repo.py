@@ -31,7 +31,7 @@ class VendedoresRepo():
         v = Vendedor.query.get(id)
         if v:
             v.codigo = data['codigo']
-            v.nombre = data.get('descripcion', None)
+            v.nombre = data.get['nombre']
             v.fecha_ingreso = data['fecha_ingreso']
             v.activo = data['activo']
             return True
