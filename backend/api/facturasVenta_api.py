@@ -14,24 +14,20 @@ repoVendedor = VendedoresRepo()
 
 nsFacturaVenta = Namespace('FacturasVenta', description='Administrador de facturas de venta')
 
-modeloFacturaVentaSinID = Model('FacturaDetalleSinCod',{
+modeloFacturaVentaSinID = Model('FacturaVentaSinID',{
     # 'tipo_id': fields.Integer(),
     'vendedor_id': fields.Integer(),
     'cliente_id': fields.Integer(),
     'cliente': Cliente,
     'vendedor': Vendedor,    
-    'detalle': FacturaDetalle,
+    'detalle': fields.List(FacturaDetalle),
     'total': fields.Float(),
     'fecha': fields.Date()
     # ?????????????????
-    # 'vendedor': fields.ClassName(),
-    # 'cliente':
-    # 'tipo':
-    # 'detalle':
     
 })
 
-modeloFacturaVenta = modeloFacturaVentaSinID.clone('FacturaDetalle',{
+modeloFacturaVenta = modeloFacturaVentaSinID.clone('FacturaVenta',{
     'numero': fields.Integer(),
 
 })
@@ -59,6 +55,7 @@ nuevoFacturaVentaParser.add_argument('detalle',  required=True)
 
 
 nuevoFacturaVentaParser.add_argument('total', type=float, required=True)
+nuevoFacturaVentaParser.add_argument('fecha', type=date, required=True)
 
 
 @nsFacturaVenta.route('/')
