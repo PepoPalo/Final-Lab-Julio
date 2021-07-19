@@ -38,9 +38,7 @@ editarArticuloParser = nuevoArticuloParser.copy()
 editarArticuloParser.add_argument('codigo',type=int, required=True)
 
 
-# buscarArticulosParser = reqparse.RequestParser(bundle_errors=True)
-# buscarArticulosParser.add_argument('desde', type=str, required=True)
-# buscarArticulosParser.add_argument('hasta', type=str, required=True)
+
 @nsArticulo.route('/')
 class ArticuloResource(Resource):
     @nsArticulo.marshal_list_with(modeloArticulo)
