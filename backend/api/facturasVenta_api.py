@@ -6,6 +6,7 @@ from flask_restx.inputs import date
 from dominio.vendedor import Vendedor
 from dominio.cliente import Cliente
 from dominio.facturaDetalle import FacturaDetalle
+from .clientes_api import modeloCliente
 
 
 repo = FacturasVentaRepo()
@@ -18,18 +19,16 @@ modeloFacturaVentaSinID = Model('FacturaVentaSinID',{
     # 'tipo_id': fields.Integer(),
     'vendedor_id': fields.Integer(),
     'cliente_id': fields.Integer(),
-    # 'cliente': Cliente,
     # 'vendedor': Vendedor,    
     # 'detalle': fields.List(FacturaDetalle),
     'total': fields.Float(),
     'fecha': fields.Date()
     # ?????????????????
-    
 })
 
 modeloFacturaVenta = modeloFacturaVentaSinID.clone('FacturaVenta',{
     'numero': fields.Integer(),
-
+    'cliente': fields.Nested(modeloCliente, skip_none=True)
 })
 # modeloBusqueda = Model('BusquedaFechas', {
 #     'desde': fields.Date(),
@@ -41,15 +40,15 @@ nsFacturaVenta.models[modeloFacturaVentaSinID.name] = modeloFacturaVentaSinID
 # nsFacturaVenta.models[modeloBusqueda.name] = modeloBusqueda
 
 nuevoFacturaVentaParser = reqparse.RequestParser(bundle_errors=True)
-nuevoFacturaVentaParser.add_argument('tipo_id', type=int, required=True)
+#nuevoFacturaVentaParser.add_argument('tipo_id', type=int, required=True)
 nuevoFacturaVentaParser.add_argument('vendedor_id', type=int, required=True)
 nuevoFacturaVentaParser.add_argument('cliente_id', type=int, required=True)
 
 # # # ver como declaramos objetos vendedor, cliente, tipo(factura), detalle
 ################################################################################
-nuevoFacturaVentaParser.add_argument('cliente', required=True)
-nuevoFacturaVentaParser.add_argument('vendedor', required=True)
-nuevoFacturaVentaParser.add_argument('detalle',  required=True)
+#nuevoFacturaVentaParser.add_argument('cliente', required=True)
+#nuevoFacturaVentaParser.add_argument('vendedor', required=True)
+#nuevoFacturaVentaParser.add_argument('detalle',  required=True)
 ################################################################################
 # nuevoFacturaVentaParser.add_argument('tipo',  required=True)
 

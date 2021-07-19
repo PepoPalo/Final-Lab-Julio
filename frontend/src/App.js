@@ -9,10 +9,12 @@ import CompraListado from './components/facturas de compra/CompraListado';
 import PresupuestoListado from './components/presupuestos/PresupuestoListado';
 
 import ProductoListado from './components/productos/ProductoListado';
+import ProductoForm from './components/productos/ProductoForm';
 
 import ClienteListado from './components/clientes/ClienteListado';
 
 import ProveedorListado from './components/proveedores/ProveedorListado';
+import ProveedorForm from './components/proveedores/ProveedorForm';
 
 import VendedorListado from './components/vendedores/VendedorListado';
 
@@ -85,10 +87,12 @@ export default function App() {
 
           <Route path="/presupuestos" component={PresupuestoListado}></Route>
 
+          <Route path="/productos/:id" component={ProductoForm} />
           <Route path="/productos" component={ProductoListado}></Route>
 
           <Route path="/clientes" component={ClienteListado}></Route>
 
+          <Route path="/proveedores/:id" component={ProveedorForm} />
           <Route path="/proveedores" component={ProveedorListado}></Route>
 
           <Route path="/vendedores" component={VendedorListado}></Route>
