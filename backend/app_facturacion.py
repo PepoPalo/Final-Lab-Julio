@@ -19,7 +19,7 @@ with app.app_context():
     db.create_all()
 
 
-api = Api(app, version='1.0.beta', title='Telefonía', description='Administracion de servicio de Facturacion')
+api = Api(app, version='1.0.beta', title='Facturacion', description='Administracion de servicio de Facturacion')
 
 api.add_namespace(nsArticulo)
 api.add_namespace(nsVendedor)
