@@ -19,7 +19,7 @@ class ClientesRepo():
     def baja(self,id):
         c = Cliente.query.get(id)
         if c:
-            c.enStock = False
+            c.activo = False
             return True
         return False
 
@@ -27,8 +27,11 @@ class ClientesRepo():
         c = Cliente.query.get(id)
         if c:
             c.codigo = data['codigo']
-            c.descripcion = data.get('descripcion', None)
-            c.precio = data['precio']
-            c.enStock = data['enStock']
+            c.nombre = data.get['nombre']
+            c.direccion = data['direccion']
+            c.telefono = data['telefono']
+            c.cuit = data['cuit'] 
+            c.localidad = data['localidad']
+            c.activo = data['activo']
             return True
         return False

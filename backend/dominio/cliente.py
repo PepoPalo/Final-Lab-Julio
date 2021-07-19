@@ -12,3 +12,4 @@ class Cliente(db.Model):
     telefono = Column(String(40),nullable=False)
     cuit = Column(String(40), nullable=False)
     localidad = Column(String(40), nullable=False)
+    activo = Column(Boolean(True),nullable=False)
