@@ -3,6 +3,10 @@ from flask_restx import Resource, Namespace, Model, fields, reqparse
 from infraestructura.facturasVenta_repo import FacturasVentaRepo
 from infraestructura.vendedores_repo import VendedoresRepo
 from flask_restx.inputs import date
+from dominio.vendedor import Vendedor
+from dominio.cliente import Cliente
+from dominio.facturaDetalle import FacturaDetalle
+
 
 repo = FacturasVentaRepo()
 repoVendedor = VendedoresRepo()
@@ -11,11 +15,12 @@ repoVendedor = VendedoresRepo()
 nsFacturaVenta = Namespace('FacturasVenta', description='Administrador de facturas de venta')
 
 modeloFacturaVentaSinID = Model('FacturaDetalleSinCod',{
-    'tipo_id': fields.Integer(),
+    # 'tipo_id': fields.Integer(),
     'vendedor_id': fields.Integer(),
     'cliente_id': fields.Integer(),
-    'cliente': fields.Integer(),
-    'detalle': fields.Float(),
+    'cliente': Cliente,
+    'vendedor': Vendedor,    
+    'detalle': FacturaDetalle,
     'total': fields.Float(),
     'fecha': fields.Date()
     # ?????????????????
@@ -46,11 +51,11 @@ nuevoFacturaVentaParser.add_argument('cliente_id', type=int, required=True)
 
 # # # ver como declaramos objetos vendedor, cliente, tipo(factura), detalle
 ################################################################################
-# nuevoFacturaVentaParser.add_argument('cliente', type=?, required=True)
-# nuevoFacturaVentaParser.add_argument('vendedor', type=?, required=True)
-# nuevoFacturaVentaParser.add_argument('tipo', type=?, required=True)
-# nuevoFacturaVentaParser.add_argument('detalle', type=float, required=True)
+nuevoFacturaVentaParser.add_argument('cliente', required=True)
+nuevoFacturaVentaParser.add_argument('vendedor', required=True)
+nuevoFacturaVentaParser.add_argument('detalle',  required=True)
 ################################################################################
+# nuevoFacturaVentaParser.add_argument('tipo',  required=True)
 
 
 nuevoFacturaVentaParser.add_argument('total', type=float, required=True)
