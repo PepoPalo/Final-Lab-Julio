@@ -23,7 +23,7 @@ api = Api(app, version='1.0.beta', title='Facturacion', description='Administrac
 
 api.add_namespace(nsArticulo)
 api.add_namespace(nsVendedor)
-api.add_namespace(nsCliente)
+#api.add_namespace(nsCliente)
 api.add_namespace(nsFacturaDetalle)
 api.add_namespace(nsFacturaVenta)
 

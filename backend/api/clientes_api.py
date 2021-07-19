@@ -2,8 +2,6 @@ from flask import abort
 from flask_restx import Resource, Namespace, Model, fields, reqparse
 from infraestructura.clientes_repo import ClientesRepo
 
-from flask_restx.inputs import date
-
 repo = ClientesRepo()
 
 
@@ -11,13 +9,18 @@ repo = ClientesRepo()
 nsCliente = Namespace('Clientes', description='Administrador de Clientes')
 
 modeloClienteSinID = Model('ClienteSinCod',{
-    'descripcion': fields.String(),
-    'precio': fields.String(),
-    'enStock': fields.Boolean()
+    'nombre': fields.String(),
+    'direccion': fields.String(),
+    'telefono': fields.String(),
+    'cuit': fields.String(),
+    'localidad': fields.String(),
+    'activo': fields.Boolean(),
+
+
 })
 
 modeloCliente = modeloClienteSinID.clone('Cliente',{
-    'codigo': fields.Integer(),
+    'codigo': fields.Integer()
 
 })
 # modeloBusqueda = Model('BusquedaFechas', {
@@ -30,9 +33,14 @@ nsCliente.models[modeloClienteSinID.name] = modeloClienteSinID
 # nsCliente.models[modeloBusqueda.name] = modeloBusqueda
 
 nuevoClienteParser = reqparse.RequestParser(bundle_errors=True)
-nuevoClienteParser.add_argument('descripcion', type=str, required=True)
-nuevoClienteParser.add_argument('precio', type=str, required=True)
-nuevoClienteParser.add_argument('enStock', type=bool, required=False, default=True)
+nuevoClienteParser.add_argument('nombre', type=str, required=True)
+
+nuevoClienteParser.add_argument('direccion', type=str, required=True)
+nuevoClienteParser.add_argument('telefono', type=str, required=True)
+nuevoClienteParser.add_argument('cuit', type=str, required=True)
+nuevoClienteParser.add_argument('localidad', type=str, required=True)
+
+nuevoClienteParser.add_argument('activo', type=bool, required=False, default=True)
 
 editarClienteParser = nuevoClienteParser.copy()
 editarClienteParser.add_argument('codigo',type=int, required=True)
@@ -44,7 +52,7 @@ class ClienteResource(Resource):
     @nsCliente.marshal_list_with(modeloCliente)
     def get(self):
         ## traigo los que tan en stock nomas
-        return repo.get_enStock()
+        return repo.get_all()
 
     @nsCliente.expect(modeloClienteSinID)
     @nsCliente.marshal_with(modeloCliente)
@@ -84,14 +92,14 @@ class ClienteResource(Resource):
 #         abort(404)
 
 
-@nsCliente.route('/baja/<int:id>')
-class ClienteResource(Resource):
-    @nsCliente.expect(modeloCliente)
+# @nsCliente.route('/baja/<int:id>')
+# class ClienteResource(Resource):
+#     @nsCliente.expect(modeloCliente)
 
-    def put(self, id):
-        if repo.baja(id):
-            repo.baja(id)
+#     def put(self, id):
+#         if repo.baja(id):
+#             repo.baja(id)
                        
-            return 'Cliente dado de Baja', 200            
-        abort(400)
+#             return 'Cliente dado de Baja', 200            
+#         abort(400)
         

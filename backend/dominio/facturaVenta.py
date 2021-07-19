@@ -16,7 +16,7 @@ class FacturaVenta(db.Model):
     # tipo =relationship('TipoFactura', backref='FacturaVenta', foreign_keys='FacturaVenta.tipo_id')
     vendedor = relationship('Vendedor')
     vendedor_id= Column(Integer,  ForeignKey('Vendedor.codigo'))   
-    cliente_id =Column(Integer, ForeignKey('clientes.codigo'))
+    cliente_id =Column(Integer, ForeignKey('cliente.codigo'))
     cliente =relationship('Cliente')
 
     # detalle =  relationship('FacturaDetalle',foreign_keys='FacturaVenta.numero', backref='FacturaVenta')
