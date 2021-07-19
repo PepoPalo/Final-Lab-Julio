@@ -3,7 +3,8 @@
 # presupuesto.
 from sqlalchemy import Integer, ForeignKey, String, Column, Float
 from sqlalchemy.orm import relationship
-from flask_restx.fields import Date
+from datos import db
+from sqlalchemy.types import Date
 class FacturaVenta(db.Model):
 
     # codigo - descripcion - cantidad vendida - monto total (con iva)
@@ -18,7 +19,7 @@ class FacturaVenta(db.Model):
     cliente_id =relationship('Cliente', foreign_keys='Cliente.cuit')
     cliente =relationship('Cliente', backref='FacturaVenta')
     detalle =  relationship('FacturaDetalle',foreign_keys='FacturaVenta.numero', backref='FacturaVenta')
-    total = Column(Float(),True)
+    total = Column(Float())
     fecha = Column(Date())
 
 

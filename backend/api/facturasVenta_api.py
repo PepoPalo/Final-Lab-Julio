@@ -20,7 +20,7 @@ modeloFacturaVentaSinID = Model('FacturaVentaSinID',{
     'cliente_id': fields.Integer(),
     'cliente': Cliente,
     'vendedor': Vendedor,    
-    'detalle': fields.List(FacturaDetalle),
+    # 'detalle': fields.List(FacturaDetalle),
     'total': fields.Float(),
     'fecha': fields.Date()
     # ?????????????????

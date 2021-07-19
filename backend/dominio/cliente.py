@@ -1,7 +1,7 @@
 
 from sqlalchemy import Column, Integer, String, Date, Boolean, Float
 from sqlalchemy.orm import relationship
-from backend.datos import db
+from datos import db
 class Cliente(db.Model):
     __tablename__ = 'clientes'
     # enunciado pide

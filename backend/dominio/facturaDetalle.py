@@ -2,7 +2,7 @@
 # 10.5), subtotal.
 from sqlalchemy import Column, Integer, String, Date, Boolean, Float
 from sqlalchemy.orm import relationship
-from backend.datos import db
+from datos import db
 from sqlalchemy.sql.schema import ForeignKey
 class FacturaDetalle(db.Model):
     # codigo - descripcion - cantidad vendida - monto total (con iva)
