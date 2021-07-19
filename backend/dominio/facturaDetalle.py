@@ -17,14 +17,10 @@ class FacturaDetalle(db.Model):
 
 
     # VER RELACIONAR CON HISTORIAL
-
-
-    
     # factura = Column(ForeignKey('factura.codigo'))
    # factura_id =relationship("Factura", foreign_keys='Factura.codigo', backref='FacturaDetalle')
     # factura = relationship("Factura", foreign_keys='FacturaDetalle.factura_id', backref='FacturaDetalle')
    ## iva_aplicado = relationship('TipoFactura', backref='FacturaDetalle')
     # iva_aplicado = relationship('Factura',foreign_keys='Factura.tipo.iva', backref='FacturaDetalle')
-
     # iva_aplicado= Column(Float(),nullable=False)
     # total = Column(Float(),nullable=False)
