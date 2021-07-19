@@ -17,8 +17,8 @@ class FacturaVenta(db.Model):
     vendedor = relationship('Vendedor')
     vendedor_id= Column(Integer,  ForeignKey('Vendedor.codigo'))   
     cliente_id =Column(Integer, ForeignKey('cliente.codigo'))
-    cliente =relationship('Cliente')
-
+    cliente =relationship("Cliente", back_populates="factura_venta")
+    # cliente =relationship('Cliente')
     # detalle =  relationship('FacturaDetalle',foreign_keys='FacturaVenta.numero', backref='FacturaVenta')
     total = Column(Float())
     fecha = Column(Date())

@@ -11,4 +11,4 @@ class Cliente(db.Model):
     cuit = Column(String(40), nullable=False)
     localidad = Column(String(40), nullable=False)
     activo = Column(Boolean(True),nullable=False)
-    factura_venta = relationship('FacturaVenta', back_populates="cliente")
+    factura_venta = relationship("FacturaVenta", back_populates="cliente")
