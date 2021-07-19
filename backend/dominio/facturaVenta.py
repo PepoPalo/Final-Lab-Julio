@@ -15,10 +15,11 @@ class FacturaVenta(db.Model):
     # tipo_id =relationship('TipoFactura', foreign_keys='Factura.tipo.codigo')
     # tipo =relationship('TipoFactura', backref='FacturaVenta', foreign_keys='FacturaVenta.tipo_id')
     vendedor = relationship('Vendedor')
-    vendedor_id= Column(Integer, foreign_keys='Vendedor.codigo')   
-    cliente_id =relationship('Cliente', foreign_keys='cliente.cuit')
-    cliente =relationship('Cliente', backref='FacturaVenta')
-    detalle =  relationship('FacturaDetalle',foreign_keys='FacturaVenta.numero', backref='FacturaVenta')
+    vendedor_id= Column(Integer,  ForeignKey('Vendedor.codigo'))   
+    cliente_id =Column(Integer, ForeignKey('clientes.codigo'))
+    cliente =relationship('Cliente')
+
+    # detalle =  relationship('FacturaDetalle',foreign_keys='FacturaVenta.numero', backref='FacturaVenta')
     total = Column(Float())
     fecha = Column(Date())
 
