@@ -7,7 +7,7 @@ from datos import db
 from api.articulos_api import nsArticulo
 from api.vendedores_api import nsVendedor
 from api.clientes_api import nsCliente
-#from api.facturas_det_api import nsFacturaDetalle
+from api.facturas_det_api import nsFacturaDetalle
 from api.facturasVenta_api import nsFacturaVenta
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:100letters@localhost/Facturacion"
@@ -25,7 +25,7 @@ api = Api(app, version='1.0.beta', title='Facturacion', description='Administrac
 api.add_namespace(nsArticulo)
 api.add_namespace(nsVendedor)
 api.add_namespace(nsCliente)
-#api.add_namespace(nsFacturaDetalle)
+api.add_namespace(nsFacturaDetalle)
 api.add_namespace(nsFacturaVenta)
 
 

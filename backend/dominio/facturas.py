@@ -19,7 +19,7 @@ class Venta(Factura):
     # codigo - descripcion - cantidad vendida - monto total (con iva)
     __tablename__ = 'facturas_venta'
     #Relacion con Articulo/Producto?
-    numero = Column(Integer, unique=True)
+    numero = Column(Integer, unique=False)
     vendedor_id= Column(Integer, ForeignKey('Vendedor.codigo'))   
     cliente_id =Column(Integer, ForeignKey('cliente.codigo'))
     detalle =  relationship("VentaDetalle", backref="factura_venta",lazy='joined')
@@ -32,9 +32,9 @@ class Compra(Factura):
     # codigo - descripcion - cantidad vendida - monto total (con iva)
     __tablename__ = 'facturas_compra'
     #Relacion con Articulo/Producto?
-    numero = Column(Integer)
+    numero = Column(Integer, unique=False)
     proveedor_cod = Column(Integer, ForeignKey('proveedores.codigo'), nullable=True) 
-    detalle =  relationship("CompraDetalle", backref="factura_compra",lazy='joined')
+    detalle =  relationship("CompraDetalle", backref="facturas_compra",lazy='joined')
 
 
 class Presupuesto(Factura):

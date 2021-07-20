@@ -26,9 +26,9 @@ class VentaDetalle(Detalle):
 
 class CompraDetalle(Detalle):
     __tablename__ = 'compra_detalle'
-    factura_id = Column(Integer, ForeignKey('facturas_compra.numero'), unique=False)
+    factura_id = Column(Integer, ForeignKey('facturas_compra.numero'))
 
 
 class PresupuestoDetalle(Detalle):
     __tablename__ = 'presupuesto_detalle'
-    presupuesto_id = Column(Integer, ForeignKey('facturas_compra.numero'), unique=False)
+    presupuesto_id = Column(Integer, ForeignKey('facturas_venta.numero'), unique=False)
