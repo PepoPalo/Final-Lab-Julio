@@ -10,7 +10,6 @@ class FacturasCompraRepo():
 
     def agregar(self, data):
         a = Compra(**data)
-        # a.numero = len(Compra.query.all())+1
         db.session.add(a)
         db.session.commit()
         return a
