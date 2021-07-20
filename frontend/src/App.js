@@ -12,6 +12,7 @@ import ProductoListado from './components/productos/ProductoListado';
 import ProductoForm from './components/productos/ProductoForm';
 
 import ClienteListado from './components/clientes/ClienteListado';
+import ClienteForm from './components/clientes/ClienteForm';
 
 import ProveedorListado from './components/proveedores/ProveedorListado';
 import ProveedorForm from './components/proveedores/ProveedorForm';
@@ -90,6 +91,7 @@ export default function App() {
           <Route path="/productos/:id" component={ProductoForm} />
           <Route path="/productos" component={ProductoListado}></Route>
 
+          <Route path="/clientes/:id" component={ClienteForm} />
           <Route path="/clientes" component={ClienteListado}></Route>
 
           <Route path="/proveedores/:id" component={ProveedorForm} />
