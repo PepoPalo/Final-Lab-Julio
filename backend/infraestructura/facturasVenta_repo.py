@@ -1,22 +1,20 @@
-from dominio.facturaVenta import FacturaVenta
+from dominio.facturas import Venta
 from datos import db
 
 # facturas, no se modifican ni se eliminan
 
 class FacturasVentaRepo():
     def get_all(self):
-        print(len(FacturaVenta.query.all()))
-        return FacturaVenta.query.all()
+        return Venta.query.all()
     
 
     def agregar(self, data):
-        a = FacturaVenta(**data)
-        #list = FacturaVenta.query.all().Count
-        #a.numero = list
+        a = Venta(**data)
+        a.numero = len(Venta.query.all())+1
         db.session.add(a)
         db.session.commit()
         return a
     
     def get_by_id(self, id):
-        return FacturaVenta.query.get(id)
+        return Venta.query.get(id)
 

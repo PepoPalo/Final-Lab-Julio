@@ -4,8 +4,6 @@ from infraestructura.clientes_repo import ClientesRepo
 
 repo = ClientesRepo()
 
-
-
 nsCliente = Namespace('Clientes', description='Administrador de Clientes')
 
 modeloClienteSinID = Model('ClienteSinCod',{
@@ -15,31 +13,22 @@ modeloClienteSinID = Model('ClienteSinCod',{
     'cuit': fields.String(),
     'localidad': fields.String(),
     'activo': fields.Boolean(),
-
-
 })
 
 modeloCliente = modeloClienteSinID.clone('Cliente',{
     'codigo': fields.Integer()
 
 })
-# modeloBusqueda = Model('BusquedaFechas', {
-#     'desde': fields.Date(),
-#     'hasta': fields.Date()
-# })
 
 nsCliente.models[modeloCliente.name] = modeloCliente
 nsCliente.models[modeloClienteSinID.name] = modeloClienteSinID
-# nsCliente.models[modeloBusqueda.name] = modeloBusqueda
 
 nuevoClienteParser = reqparse.RequestParser(bundle_errors=True)
 nuevoClienteParser.add_argument('nombre', type=str, required=True)
-
 nuevoClienteParser.add_argument('direccion', type=str, required=True)
 nuevoClienteParser.add_argument('telefono', type=str, required=True)
 nuevoClienteParser.add_argument('cuit', type=str, required=True)
 nuevoClienteParser.add_argument('localidad', type=str, required=True)
-
 nuevoClienteParser.add_argument('activo', type=bool, required=False, default=True)
 
 editarClienteParser = nuevoClienteParser.copy()

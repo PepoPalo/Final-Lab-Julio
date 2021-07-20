@@ -7,6 +7,8 @@ class Vendedor(db.Model):
     nombre = Column(String(40), nullable=False)
     fecha_ingreso = Column(Date(), nullable=False)
     activo = Column(Boolean(True), nullable=False)
+    facturas = relationship("Venta", backref="vendedor")
+    presupuestos = relationship("Presupuesto", backref="vendedor")
     # ???
     # direccion = Column(String(40), nullable=False)
     # dni = Column(String(40), nullable=False)

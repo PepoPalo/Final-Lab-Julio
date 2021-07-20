@@ -6,8 +6,6 @@ from flask_restx.inputs import date
 
 repo = FacturasDetalleRepo()
 
-
-
 nsFacturaDetalle = Namespace('FacturasDetalle', description='Administrador de detalles de factura')
 
 modeloFacturaDetalleSinID = Model('FacturaDetalleSinCod',{

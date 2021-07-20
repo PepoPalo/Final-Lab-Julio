@@ -3,9 +3,9 @@ from flask_restx import Resource, Namespace, Model, fields, reqparse
 from infraestructura.facturasVenta_repo import FacturasVentaRepo
 from infraestructura.vendedores_repo import VendedoresRepo
 from flask_restx.inputs import date
-from dominio.vendedor import Vendedor
-from dominio.cliente import Cliente
-from dominio.facturaDetalle import FacturaDetalle
+# from dominio.vendedor import Vendedor
+# from dominio.cliente import Cliente
+#from dominio.facturaDetalle import FacturaDetalle
 from .clientes_api import modeloCliente
 from .vendedores_api import modeloVendedor
 
@@ -41,6 +41,7 @@ nsFacturaVenta.models[modeloFacturaVentaSinID.name] = modeloFacturaVentaSinID
 # nsFacturaVenta.models[modeloBusqueda.name] = modeloBusqueda
 
 nuevoFacturaVentaParser = reqparse.RequestParser(bundle_errors=True)
+nuevoFacturaVentaParser.add_argument('tipo', type=str, required=True)
 nuevoFacturaVentaParser.add_argument('vendedor_id', type=int, required=True)
 nuevoFacturaVentaParser.add_argument('cliente_id', type=int, required=True)
 

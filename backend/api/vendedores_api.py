@@ -6,8 +6,6 @@ from flask_restx.inputs import date
 
 repo = VendedoresRepo()
 
-
-
 nsVendedor = Namespace('vendedores', description='Administrador de vendedores')
 
 modeloVendedorSinID = Model('VendedorSinCod',{
@@ -18,16 +16,10 @@ modeloVendedorSinID = Model('VendedorSinCod',{
 
 modeloVendedor = modeloVendedorSinID.clone('Vendedor',{
     'codigo': fields.Integer(),
-
 })
-# modeloBusqueda = Model('BusquedaFechas', {
-#     'desde': fields.Date(),
-#     'hasta': fields.Date()
-# })
 
 nsVendedor.models[modeloVendedor.name] = modeloVendedor
 nsVendedor.models[modeloVendedorSinID.name] = modeloVendedorSinID
-# nsVendedor.models[modeloBusqueda.name] = modeloBusqueda
 
 nuevoVendedorParser = reqparse.RequestParser(bundle_errors=True)
 nuevoVendedorParser.add_argument('nombre', type=str, required=True)
@@ -37,10 +29,6 @@ nuevoVendedorParser.add_argument('activo', type=bool, required=False, default=Tr
 editarVendedorParser = nuevoVendedorParser.copy()
 editarVendedorParser.add_argument('codigo',type=int, required=True)
 
-
-# buscarVendedoresParser = reqparse.RequestParser(bundle_errors=True)
-# buscarVendedoresParser.add_argument('desde', type=str, required=True)
-# buscarVendedoresParser.add_argument('hasta', type=str, required=True)
 @nsVendedor.route('/')
 class VendedorResource(Resource):
     @nsVendedor.marshal_list_with(modeloVendedor)
@@ -75,16 +63,6 @@ class VendedorResource(Resource):
             return 'Vendedor actualizado', 200
         abort(404)
    
-
-# @nsVendedor.route('/buscar/<string:desde>/<string:hasta>/')
-# class VendedorResource(Resource):
-#     @nsVendedor.marshal_list_with(modeloVendedor)
-#     def get(self, desde, hasta):
-#         l = repo.buscar(desde, hasta)
-#         if l:
-#             return l, 200
-#         abort(404)
-
 
 @nsVendedor.route('/baja/<int:id>')
 class VendedorResource(Resource):

@@ -1,4 +1,4 @@
-from dominio.facturaDetalle import FacturaDetalle
+from dominio.detalles import FacturaDetalle
 from datos import db
 
 # facturas, no se modifican ni se eliminan

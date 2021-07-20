@@ -9,7 +9,6 @@ class VendedoresRepo():
     def get_activos(self):
         return Vendedor.query.filter(Vendedor.activo == True).all()
 
-
     def agregar(self, data):
         v = Vendedor(**data)
         
@@ -23,7 +22,7 @@ class VendedoresRepo():
     def baja(self,id):
         v = Vendedor.query.get(id)
         if v:
-            a.activo = False
+            v.activo = False
             return True
         return False
 

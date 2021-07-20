@@ -1,7 +1,8 @@
-
 from sqlalchemy import Column, Integer, String, Date, Boolean, Float
 from sqlalchemy.orm import relationship
 from datos import db
+
+
 class Cliente(db.Model):
     __tablename__ = 'cliente'
     codigo = Column(Integer, primary_key=True)
@@ -11,4 +12,5 @@ class Cliente(db.Model):
     cuit = Column(String(40), nullable=False)
     localidad = Column(String(40), nullable=False)
     activo = Column(Boolean(True),nullable=False)
-    factura_venta = relationship("FacturaVenta", back_populates="cliente")
+    facturas = relationship("Venta", backref="cliente")
+    presupuestos = relationship("Presupuesto", backref="cliente")
