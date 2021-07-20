@@ -45,7 +45,6 @@ editarFacturaDetalleParser.add_argument('codigo',type=int, required=True)
 class FacturaDetalleResource(Resource):
     @nsFacturaDetalle.marshal_list_with(modeloFacturaDetalle)
     def get(self):
-        ## traigo los que tan en stock nomas
         return repo.get_all()
 
     @nsFacturaDetalle.expect(modeloFacturaDetalleSinID)

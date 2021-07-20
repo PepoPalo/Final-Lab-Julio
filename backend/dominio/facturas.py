@@ -22,7 +22,7 @@ class Venta(Factura):
     numero = Column(Integer, unique=True)
     vendedor_id= Column(Integer, ForeignKey('Vendedor.codigo'))   
     cliente_id =Column(Integer, ForeignKey('cliente.codigo'))
-    detalle =  relationship("VentaDetalle", backref="factura_venta")
+    detalle =  relationship("VentaDetalle", backref="factura_venta",lazy='joined')
     total = Column(Float())
     fecha = Column(Date())
 
@@ -34,7 +34,7 @@ class Compra(Factura):
     #Relacion con Articulo/Producto?
     numero = Column(Integer)
     proveedor_cod = Column(Integer, ForeignKey('proveedores.codigo'), nullable=True) 
-    detalle =  relationship("CompraDetalle", backref="factura_compra")
+    detalle =  relationship("CompraDetalle", backref="factura_compra",lazy='joined')
 
 
 class Presupuesto(Factura):
@@ -44,4 +44,4 @@ class Presupuesto(Factura):
     fecha_validez = Column(Date)
     vendedor_id= Column(Integer, ForeignKey('Vendedor.codigo'))   
     cliente_id =Column(Integer, ForeignKey('cliente.codigo'))
-    detalle = relationship("PresupuestoDetalle", backref="presupuesto")
+    detalle = relationship("PresupuestoDetalle", backref="presupuesto",lazy='joined')
