@@ -7,6 +7,7 @@ from dominio.vendedor import Vendedor
 from dominio.cliente import Cliente
 from dominio.facturaDetalle import FacturaDetalle
 from .clientes_api import modeloCliente
+from .vendedores_api import modeloVendedor
 
 
 repo = FacturasVentaRepo()
@@ -16,10 +17,9 @@ repoVendedor = VendedoresRepo()
 nsFacturaVenta = Namespace('FacturasVenta', description='Administrador de facturas de venta')
 
 modeloFacturaVentaSinID = Model('FacturaVentaSinID',{
-    # 'tipo_id': fields.Integer(),
+    'tipo': fields.String(),
     'vendedor_id': fields.Integer(),
     'cliente_id': fields.Integer(),
-    # 'vendedor': Vendedor,    
     # 'detalle': fields.List(FacturaDetalle),
     'total': fields.Float(),
     'fecha': fields.Date()
@@ -28,7 +28,8 @@ modeloFacturaVentaSinID = Model('FacturaVentaSinID',{
 
 modeloFacturaVenta = modeloFacturaVentaSinID.clone('FacturaVenta',{
     'numero': fields.Integer(),
-    'cliente': fields.Nested(modeloCliente, skip_none=True)
+    'cliente': fields.Nested(modeloCliente, skip_none=True),
+    'vendedor': fields.Nested(modeloVendedor, skip_none=True)
 })
 # modeloBusqueda = Model('BusquedaFechas', {
 #     'desde': fields.Date(),
@@ -40,7 +41,6 @@ nsFacturaVenta.models[modeloFacturaVentaSinID.name] = modeloFacturaVentaSinID
 # nsFacturaVenta.models[modeloBusqueda.name] = modeloBusqueda
 
 nuevoFacturaVentaParser = reqparse.RequestParser(bundle_errors=True)
-#nuevoFacturaVentaParser.add_argument('tipo_id', type=int, required=True)
 nuevoFacturaVentaParser.add_argument('vendedor_id', type=int, required=True)
 nuevoFacturaVentaParser.add_argument('cliente_id', type=int, required=True)
 

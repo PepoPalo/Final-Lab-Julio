@@ -5,11 +5,14 @@ from datos import db
 
 class FacturasVentaRepo():
     def get_all(self):
+        print(len(FacturaVenta.query.all()))
         return FacturaVenta.query.all()
     
 
     def agregar(self, data):
         a = FacturaVenta(**data)
+        #list = FacturaVenta.query.all().Count
+        #a.numero = list
         db.session.add(a)
         db.session.commit()
         return a

@@ -12,8 +12,7 @@ class FacturaVenta(db.Model):
     #Relacion con Articulo/Producto?
     ### CORREGIR AUTOINCREMENT
     numero = Column(Integer, primary_key=True, autoincrement=True, unique=True)
-    # tipo_id =relationship('TipoFactura', foreign_keys='Factura.tipo.codigo')
-    # tipo =relationship('TipoFactura', backref='FacturaVenta', foreign_keys='FacturaVenta.tipo_id')
+    tipo = Column(String)
     vendedor = relationship('Vendedor')
     vendedor_id= Column(Integer,  ForeignKey('Vendedor.codigo'))   
     cliente_id =Column(Integer, ForeignKey('cliente.codigo'))
